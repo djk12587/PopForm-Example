@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ValidatableForm",
+        "repositoryURL": "https://github.com/djk12587/PopForm",
+        "state": {
+          "branch": "wip",
+          "revision": "6890317100b8dc68b45f427a86be49557a28772c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
