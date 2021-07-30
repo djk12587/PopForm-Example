@@ -20,7 +20,7 @@ class ViewController: UIViewController, ValidatableFormDelegate {
             guard !(textField.text?.isEmpty ?? true) else { return .unknown }
             return textField.text?.lowercased() == textField.placeholder ? .valid : .invalid
         }
-        textField.setValidationStateDidChangeHandler {
+        textField.setValidationStateDidChange(handler: {
             switch textField.validationState {
                 case .unknown:
                     textField.backgroundColor = nil
@@ -29,7 +29,7 @@ class ViewController: UIViewController, ValidatableFormDelegate {
                 case .valid:
                     textField.backgroundColor = .green
             }
-        }
+        })
         textField.placeholder = "first"
         return textField
     }()
@@ -40,7 +40,7 @@ class ViewController: UIViewController, ValidatableFormDelegate {
             guard !(textField.text?.isEmpty ?? true) else { return .unknown }
             return textField.text?.lowercased() == textField.placeholder ? .valid : .invalid
         }
-        textField.setValidationStateDidChangeHandler {
+        textField.setValidationStateDidChange(handler: {
             switch textField.validationState {
                 case .unknown:
                     textField.backgroundColor = nil
@@ -49,17 +49,29 @@ class ViewController: UIViewController, ValidatableFormDelegate {
                 case .valid:
                     textField.backgroundColor = .green
             }
-        }
+        })
         textField.placeholder = "second"
         return textField
+    }()
+
+    let switchFormField: UIFormSwitch = {
+        let switchFormField = UIFormSwitch()
+        switchFormField.isOn = true
+        switchFormField.setValidation {
+            switchFormField.isOn ? .valid : .invalid
+        }
+        switchFormField.setValidationStateDidChange(handler: {
+            switchFormField.backgroundColor = switchFormField.isOn ? .green : .red
+        }, send: .valueChanged)
+        return switchFormField
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        form = ValidatableForm(fields: textField1, textField2, delegate: self)
+        form = ValidatableForm(fields: textField1, textField2, switchFormField, delegate: self)
 
-        let stackView = UIStackView(arrangedSubviews: [textField1, textField2])
+        let stackView = UIStackView(arrangedSubviews: [textField1, textField2, switchFormField])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         view.addSubview(stackView)
