@@ -20,8 +20,8 @@ class ViewController: UIViewController, ValidatableFormDelegate {
             guard !(textField.text?.isEmpty ?? true) else { return .unknown }
             return textField.text?.lowercased() == textField.placeholder ? .valid : .invalid
         }
-        textField.setValidationStateDidChange(handler: {
-            switch textField.validationState {
+        textField.setValidationStateDidChange(handler: { validationState in
+            switch validationState {
                 case .unknown:
                     textField.backgroundColor = nil
                 case .invalid:
@@ -40,8 +40,8 @@ class ViewController: UIViewController, ValidatableFormDelegate {
             guard !(textField.text?.isEmpty ?? true) else { return .unknown }
             return textField.text?.lowercased() == textField.placeholder ? .valid : .invalid
         }
-        textField.setValidationStateDidChange(handler: {
-            switch textField.validationState {
+        textField.setValidationStateDidChange(handler: { validationState in
+            switch validationState {
                 case .unknown:
                     textField.backgroundColor = nil
                 case .invalid:
@@ -56,13 +56,13 @@ class ViewController: UIViewController, ValidatableFormDelegate {
 
     let switchFormField: UIFormSwitch = {
         let switchFormField = UIFormSwitch()
-        switchFormField.isOn = true
-        switchFormField.setValidation {
+        switchFormField.setValidationStateDidChange(handler: { validationState in
+            switchFormField.backgroundColor = validationState == .valid ? .green : .red
+        })
+        switchFormField.setValidation(predicate: {
             switchFormField.isOn ? .valid : .invalid
-        }
-        switchFormField.setValidationStateDidChange(handler: {
-            switchFormField.backgroundColor = switchFormField.isOn ? .green : .red
-        }, send: .valueChanged)
+        }, runValidation: true)
+
         return switchFormField
     }()
 
