@@ -6,23 +6,23 @@
 //
 
 import UIKit
-import ValidatableForm
+import PopForm
 
 #warning("see if you can fix when changing a phone number the cursor jumps to the end when textField.text is changed")
 
 class ViewController: UIViewController, ValidatableFormDelegate {
 
-    private var form: ValidatableForm?
+    private var form: Form?
 
-    let textField1: UIFormTextField = {
-        let textField = UIFormTextField()
+    let textField1: UIFormFieldTextField = {
+        let textField = UIFormFieldTextField()
         textField.setValidation {
             guard !(textField.text?.isEmpty ?? true) else { return .unknown }
             return textField.text?.lowercased() == textField.placeholder ? .valid : .invalid
         }
         textField.setValidationStateDidChange(handler: { validationState in
             switch validationState {
-                case .unknown:
+                case .unknown, .default:
                     textField.backgroundColor = nil
                 case .invalid:
                     textField.backgroundColor = .red
@@ -34,15 +34,15 @@ class ViewController: UIViewController, ValidatableFormDelegate {
         return textField
     }()
 
-    let textField2: UIFormTextField = {
-        let textField = UIFormTextField()
+    let textField2: UIFormFieldTextField = {
+        let textField = UIFormFieldTextField()
         textField.setValidation {
             guard !(textField.text?.isEmpty ?? true) else { return .unknown }
             return textField.text?.lowercased() == textField.placeholder ? .valid : .invalid
         }
         textField.setValidationStateDidChange(handler: { validationState in
             switch validationState {
-                case .unknown:
+                case .unknown, .default:
                     textField.backgroundColor = nil
                 case .invalid:
                     textField.backgroundColor = .red
@@ -54,14 +54,14 @@ class ViewController: UIViewController, ValidatableFormDelegate {
         return textField
     }()
 
-    let switchFormField: UIFormSwitch = {
-        let switchFormField = UIFormSwitch()
+    let switchFormField: UIFormFieldSwitch = {
+        let switchFormField = UIFormFieldSwitch()
         switchFormField.setValidationStateDidChange(handler: { validationState in
             switchFormField.backgroundColor = validationState == .valid ? .green : .red
         })
         switchFormField.setValidation(predicate: {
             switchFormField.isOn ? .valid : .invalid
-        }, runValidation: true)
+        })
 
         return switchFormField
     }()
@@ -69,7 +69,7 @@ class ViewController: UIViewController, ValidatableFormDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        form = ValidatableForm(fields: textField1, textField2, switchFormField, delegate: self)
+        form = Form(fields: textField1, textField2, switchFormField, delegate: self)
 
         let stackView = UIStackView(arrangedSubviews: [textField1, textField2, switchFormField])
         stackView.translatesAutoresizingMaskIntoConstraints = false

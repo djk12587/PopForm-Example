@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF58BB5A26D30FB200B3487C /* PopForm in Frameworks */ = {isa = PBXBuildFile; productRef = AF58BB5926D30FB200B3487C /* PopForm */; };
 		E085AFAD26ADCD7600D30D8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E085AFAC26ADCD7600D30D8A /* AppDelegate.swift */; };
 		E085AFAF26ADCD7600D30D8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E085AFAE26ADCD7600D30D8A /* SceneDelegate.swift */; };
 		E085AFB126ADCD7600D30D8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E085AFB026ADCD7600D30D8A /* ViewController.swift */; };
 		E085AFB426ADCD7600D30D8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E085AFB226ADCD7600D30D8A /* Main.storyboard */; };
 		E085AFB626ADCD7700D30D8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E085AFB526ADCD7700D30D8A /* Assets.xcassets */; };
 		E085AFB926ADCD7700D30D8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E085AFB726ADCD7700D30D8A /* LaunchScreen.storyboard */; };
-		E0C7D48F26B2082200AC2142 /* ValidatableForm in Frameworks */ = {isa = PBXBuildFile; productRef = E0C7D48E26B2082200AC2142 /* ValidatableForm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0C7D48F26B2082200AC2142 /* ValidatableForm in Frameworks */,
+				AF58BB5A26D30FB200B3487C /* PopForm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 			);
 			name = "PopForm-Example";
 			packageProductDependencies = (
-				E0C7D48E26B2082200AC2142 /* ValidatableForm */,
+				AF58BB5926D30FB200B3487C /* PopForm */,
 			);
 			productName = Form;
 			productReference = E085AFA926ADCD7600D30D8A /* PopForm-Example.app */;
@@ -116,7 +116,7 @@
 			);
 			mainGroup = E085AFA026ADCD7500D30D8A;
 			packageReferences = (
-				E0C7D48D26B2082200AC2142 /* XCRemoteSwiftPackageReference "PopForm" */,
+				AF58BB5826D30FB200B3487C /* XCRemoteSwiftPackageReference "PopForm" */,
 			);
 			productRefGroup = E085AFAA26ADCD7600D30D8A /* Products */;
 			projectDirPath = "";
@@ -351,21 +351,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E0C7D48D26B2082200AC2142 /* XCRemoteSwiftPackageReference "PopForm" */ = {
+		AF58BB5826D30FB200B3487C /* XCRemoteSwiftPackageReference "PopForm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/djk12587/PopForm";
 			requirement = {
-				branch = wip;
+				branch = main;
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E0C7D48E26B2082200AC2142 /* ValidatableForm */ = {
+		AF58BB5926D30FB200B3487C /* PopForm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E0C7D48D26B2082200AC2142 /* XCRemoteSwiftPackageReference "PopForm" */;
-			productName = ValidatableForm;
+			package = AF58BB5826D30FB200B3487C /* XCRemoteSwiftPackageReference "PopForm" */;
+			productName = PopForm;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
